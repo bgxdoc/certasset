@@ -1,11 +1,18 @@
 import sys,time
 from socket import socket
-import ssl,masscan
+import ssl
 import M2Crypto
 import OpenSSL,xml,threading,queue
 
+
 q = queue.Queue()
 final_res = []
+
+try:
+    import masscan
+except ImportError as error:
+    sys.exit("""You need masscan!
+                TO install run command: pip install python-masscan==0.1.2""")
 
 try:
     ip_range = sys.argv[1]
